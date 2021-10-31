@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stable-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nodejs-test
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: nodejs-test
+        track: stable
+    spec:
+      containers:
+      - name: stable-app
+        image: renardarv/nodejs-test:1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 2000
